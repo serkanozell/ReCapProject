@@ -35,7 +35,7 @@ namespace Business.Concrete
 
         public List<Color> GetAllByColorId(int id)
         {
-            return _colorDal.GetAll(p => p.ColorId == id);
+            return _colorDal.GetAll(c => c.Id == id);
         }
 
         public void Update(Color color)
