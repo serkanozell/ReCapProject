@@ -22,34 +22,30 @@ namespace Business.Concrete
 
         public IResult Add(Color color)
         {
-            if (color.ColorName.Length<2)
-            {
-                return new ErrorResult(Messages.CarNameInvalid);
-            }
             _colorDal.Add(color);
-            return new SuccessResult(Messages.CarAdded);
+            return new SuccessResult(Messages.ColorAdded);
         }
 
         public IResult Delete(Color color)
         {
             _colorDal.Delete(color);
-            return new Result(true, "araba silindi");
+            return new SuccessResult(Messages.ColorDeleted);
         }
 
         public IDataResult<List<Color>> GetAll()
         {
-            return new SuccessDataResult<List<Color>>(_colorDal.GetAll());
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.ColorsListed);
         }
 
-        public IDataResult<List<Color>> GetById(int id)
+        public IDataResult<Color> GetByColorId(int colorId)
         {
-            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(c => c.Id == id));
+            return new SuccessDataResult<Color>(_colorDal.Get(co => co.ColorId == colorId));
         }
 
         public IResult Update(Color color)
         {
             _colorDal.Update(color);
-            return new Result(true, "renk güncellendi");
+            return new SuccessResult(Messages.ColorUpdated);
         }
     }
 }

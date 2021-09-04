@@ -19,37 +19,17 @@ namespace DataAccess.Concrete.EntityFramework
             using (CarRentContext context = new CarRentContext())
             {
                 var result = from c in context.Cars
-                             join b in context.Brands 
-                             on c.BrandId equals b.Id
-                             join co in context.Colors 
-                             on c.ColorId equals co.Id
-                             
+                             join b in context.Brands
+                             on c.BrandId equals b.BrandId
+                             join co in context.Colors on c.ColorId equals co.ColorId
                              select new CarDetailDto
                              {
-                                 
-                                 CarName = c.CarName,
-                                 ColorName =co.ColorName,
-                                 DailyPrice = c.DailyPrice,
-                                 Description = c.Description,
+                                 CarId = c.CarId,
+                                 CarName = c.Description,
                                  BrandName = b.BrandName,
-                                 ModelYear = c.ModelYear
-                                 
-                                 
+                                 ColorName = co.ColorName,
+                                 DailyPrice = c.DailyPrice
                              };
-                //var result = from c in context.Cars
-                //             join co in context.Colors
-                //             on c.ColorId equals co.ColorId
-                //             join b in context.Brands
-                //             on c.BrandId equals b.BrandId
-                //             select new CarDetailDto
-                //             {
-                //                 CarName = c.CarName,
-                //                 ColorName = co.ColorName,
-                //                 BrandName = b.BrandName,
-                //                 DailyPrice = c.DailyPrice
-
-                //             };
-                //var abc = result;
                 return result.ToList();
             }
         }
