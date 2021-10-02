@@ -36,5 +36,8 @@ namespace Business.Constants
         public static string UserUpdated = "User updated";
         public static string UsersListed = "Users listed";
         internal static string RentalFailed = "Rent failed";
+        internal static string ImageAdded;
+        internal static string ImageDeleted;
+        internal static string CarImageAddFailed;
     }
 }
